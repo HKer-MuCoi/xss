@@ -20,12 +20,21 @@ function renderMessages() {
   userMessagesList.innerHTML = messageItems;
 }
 
+// function escapeOutput(toOutput){
+//   var lt = /</g, 
+//   gt = />/g, 
+//   ap = /'/g, 
+//   ic = /"/g;
+//   return toOutput.toString().replace(lt, "&lt;").replace(gt, "&gt;").replace(ap, "&#39;").replace(ic, "&#34;");
+// }
+
 function formSubmitHandler(event) {
   event.preventDefault();
   const userMessageInput = event.target.querySelector('textarea');
   const messageImageInput = event.target.querySelector('input');
-  const userMessage = userMessageInput.value;
-  const imageUrl = messageImageInput.value;
+  const userMessage = escapeOutput(userMessageInput.value);
+  const imageUrl = escapeOutput(messageImageInput.value);
+  console.log(imageUrl);
 
   if (
     !userMessage ||
